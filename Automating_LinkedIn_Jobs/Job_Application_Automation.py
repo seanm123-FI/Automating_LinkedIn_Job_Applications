@@ -1,14 +1,18 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 import time
+from dotenv import load_dotenv
 
-EMAIL = "Seanmurphy852@gmail.com"   # Your LinkedIn Email
-PASSWORD = "Killara12!"   # Your LinkedIn Password
-PHONE = '083 472 3254'
+# Load environment variables from .env file
+load_dotenv()
+
+EMAIL = os.getenv("EMAIL") # LinkedIn email
+PASSWORD = os.getenv("PASSWORD") # LinkedIn password
+PHONE = os.getenv("PHONE") # Phone number
 
 def abort_application(driver):
     try:
@@ -24,6 +28,7 @@ def abort_application(driver):
 def login(driver):
     try:
         # Open LinkedIn
+        # This is the link to the job search page, paste the link to the job search page you want to apply to
         driver.get("https://www.linkedin.com/jobs/search/?currentJobId=4158619509&distance=25&f_AL=true&f_E=2%2C3%2C4&f_PP=105178154&f_WT=3%2C2&geoId=104738515&keywords=software%20engineer&origin=JOB_SEARCH_PAGE_JOB_FILTER&refresh=true&sortBy=R")
         print("Opened LinkedIn")
 
@@ -137,4 +142,3 @@ if __name__ == "__main__":
     apply_for_jobs(driver)
 
     driver.quit()
-    print("Done")
